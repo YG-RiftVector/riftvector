@@ -18,4 +18,71 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Modern gradient background with subtle pattern */
+  background-image: linear-gradient(180deg, rgba(245,247,250,0.8), rgba(233,236,239,0.9));
+  /* Smooth scrolling and scroll snapping container defaults */
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+/* Make the main app scrollable and enable snapping for full-page sections */
+main.app-scroll-container {
+  height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: y mandatory;
+}
+
+.section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.25rem;
+}
+
+.bg-glass {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px) saturate(1.05);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
+  border: 1px solid rgba(15,23,42,0.06);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+}
+
+/* Header utilities used by layout */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image: linear-gradient(180deg, rgba(10,10,10,0.85), rgba(20,20,20,0.95));
+  }
+  .bg-glass {
+    background: rgba(8,10,12,0.45);
+    border: 1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  }
+  .site-header {
+    background: linear-gradient(180deg, rgba(8,10,12,0.6), rgba(8,10,12,0.4));
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+  }
 }
