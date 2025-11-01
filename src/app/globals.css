@@ -35,11 +35,9 @@ main.app-scroll-container {
   height: 100vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  scroll-snap-type: y mandatory;
 }
 
 .section {
-  scroll-snap-align: start;
   min-height: 100vh;
   display: flex;
   align-items: center;
