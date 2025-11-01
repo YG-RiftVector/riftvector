@@ -8,7 +8,7 @@ export default function Header(): JSX.Element {
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="#home" className="flex items-center gap-2">
-            <Image src="/sheild.PNG" alt="logo" width={50} height={10} />
+            <Image src="/sheild.png" alt="logo" width={50} height={50} priority />
             <span className="font-semibold">RiftVector</span>
           </Link>
         </div>
