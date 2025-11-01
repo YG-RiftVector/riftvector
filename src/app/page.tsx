@@ -1,25 +1,15 @@
-import Image from "next/image";
+import Hero from "../components/Hero";
+import Features from "../components/Features";
+import About from "../components/About";
+import Contact from "../components/Contact";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className=""
-          src="/sheild.PNG"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-md text-center md:text-left font-[family-name:var(--font-geist-mono)]">
-            RiftVector
-
-        </ol>
-
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-      </footer>
-    </div>
+    <>
+      <Hero />
+      <Features />
+      <About />
+      <Contact />
+    </>
   );
 }

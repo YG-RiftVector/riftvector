@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "../components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}> 
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+
+        <Header />
+
+        <main id="main" className="app-scroll-container">
+          {children}
+        </main>
+
+        <footer className="w-full">
+          <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-zinc-600">
+            © {new Date().getFullYear()} RiftVector — Built with Next.js
+          </div>
+        </footer>
       </body>
     </html>
   );
