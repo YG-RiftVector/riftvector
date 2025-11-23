@@ -15,7 +15,7 @@ export default function Header(): JSX.Element {
 
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <a href="#home" className="hover:underline">Home</a>
-          <a href="#features" className="hover:underline">Features</a>
+          <a href="#enterprises" className="hover:underline">Enterprises</a>
           <a href="#about" className="hover:underline">About</a>
           <a href="#contact" className="hover:underline">Contact</a>
         </nav>
