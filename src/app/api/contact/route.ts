@@ -133,8 +133,8 @@ The RiftVector Team
     // Send confirmation email (fire and forget)
     emailClient
       .beginSend(userEmailMessage)
-      .then((poller: any) => poller.pollUntilDone())
-      .catch((err: any) => console.error('Failed to send confirmation email:', err))
+      .then((poller) => poller.pollUntilDone())
+      .catch((err: Error) => console.error('Failed to send confirmation email:', err))
 
     return NextResponse.json(
       {
@@ -144,13 +144,14 @@ The RiftVector Team
       },
       { status: 200 }
     )
-  } catch (error: any) {
-    console.error('Error sending email:', error)
+  } catch (error: Error | unknown) {
+    const err = error instanceof Error ? error : new Error('Unknown error occurred')
+    console.error('Error sending email:', err)
 
     return NextResponse.json(
       {
         error: 'Failed to send email',
-        message: error?.message || 'Unknown error occurred',
+        message: err.message || 'Unknown error occurred',
       },
       { status: 500 }
     )
