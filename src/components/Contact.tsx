@@ -1,6 +1,7 @@
 "use client";
 
 import React, { JSX, FormEvent, useState } from "react";
+import { sendEmail } from "@/lib/emailService";
 
 export default function Contact(): JSX.Element {
   const [formData, setFormData] = useState({
@@ -8,13 +9,43 @@ export default function Contact(): JSX.Element {
     email: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsLoading(true);
+    setStatus({ type: null, message: "" });
+
+    try {
+      const result = await sendEmail(formData);
+
+      if (result.success) {
+        setStatus({
+          type: "success",
+          message: "Thank you! Your message has been sent successfully.",
+        });
+        // Reset form
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({
+          type: "error",
+          message: result.error || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          "An unexpected error occurred. Please try again later.",
+      });
+      console.error("Email submission error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (
@@ -88,10 +119,22 @@ export default function Contact(): JSX.Element {
             </div>
             <button
               type="submit"
-              className="w-full px-4 py-2 rounded-md bg-sky-600 hover:bg-sky-700 text-white font-medium transition-colors duration-200"
+              disabled={isLoading}
+              className="w-full px-4 py-2 rounded-md bg-sky-600 hover:bg-sky-700 disabled:bg-sky-400 text-white font-medium transition-colors duration-200"
             >
-              Send Message
+              {isLoading ? "Sending..." : "Send Message"}
             </button>
+            {status.type && (
+              <div
+                className={`p-4 rounded-md text-sm ${
+                  status.type === "success"
+                    ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100"
+                    : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100"
+                }`}
+              >
+                {status.message}
+              </div>
+            )}
           </form>
         </div>
       </div>
