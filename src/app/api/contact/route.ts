@@ -31,10 +31,24 @@ export async function POST(request: NextRequest) {
     const senderEmail = process.env.AZURE_SENDER_EMAIL
     const recipientEmail = process.env.AZURE_RECIPIENT_EMAIL
 
-    if (!connectionString || !senderEmail || !recipientEmail) {
-      console.error('Missing Azure Communication Services configuration')
+    if(!connectionString) {
+      console.error('AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING is not set')
       return NextResponse.json(
-        { error: 'Email service not configured' },
+        { error: 'Connection String not configured correctly' },
+        { status: 500 }
+      )
+    }
+    if(!senderEmail) {
+      console.error('AZURE_SENDER_EMAIL is not set')
+      return NextResponse.json(
+        { error: 'Sender Email not configured correctly' },
+        { status: 500 }
+      )
+    }
+    if(!recipientEmail) {
+      console.error('AZURE_RECIPIENT_EMAIL is not set')
+      return NextResponse.json(
+        { error: 'Recipient Email not configured correctly' },
         { status: 500 }
       )
     }
