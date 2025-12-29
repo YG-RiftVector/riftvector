@@ -8,7 +8,7 @@ export default function Enterprises(): JSX.Element {
         <div className="max-w-5xl w-full mx-auto px-6">
           <div className="bg-glass p-12 text-center">
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              Names of logos of companies we work with goes here
+              Coming soon...Enterprise solutions tailored for your business needs.
             </p>
           </div>
         </div>
