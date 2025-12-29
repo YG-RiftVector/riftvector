@@ -59,7 +59,7 @@ export default function Contact(): JSX.Element {
 
   return (
     <section id="contact" className="section flex-col min-h-[45vh] md:min-h-screen">
-      <h2 className="text-2xl font-bold mb-2 text-center pt-4 md:pt-8">Contact</h2>
+      <h2 className="text-2xl font-bold mb-2 text-center pt-4 md:pt-8">Contact Us</h2>
       <div className="flex-1 flex items-center justify-center w-full px-0 md:px-6">
         <div className="max-w-2xl w-full mx-auto">
           <div className="bg-glass p-6 md:p-8 md:rounded-xl">
