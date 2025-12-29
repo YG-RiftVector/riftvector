@@ -11,7 +11,7 @@ export default function Header(): JSX.Element {
     { href: "#home", label: "Home" },
     { href: "#enterprises", label: "Enterprises" },
     { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
+    { href: "#contact", label: "Contact Us" },
   ];
 
   return (
